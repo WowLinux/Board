@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="board_table1")
-public class BoardEnity {
+public class BoardEnity  extends BaseEntity {
 
 	@Id //PK 컬럼지정, 필수
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
@@ -25,5 +25,16 @@ public class BoardEnity {
 	private String boardWriter;
 	
 // 	@Column(unique = true)  //크기 255, null 가능상태 가 기본이다. Unique도 줄 수있다.
+	@Column
+	private String boardPass;
+	
+	@Column
+	private String boardTitle;
+	
+	@Column(length = 500)
+	private String boardContents;
+	
+	@Column
+	private int boardHits;
 	
 }
