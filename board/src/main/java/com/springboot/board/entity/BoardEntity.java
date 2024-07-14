@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.springboot.board.dto.BoardDTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="board_table1")
-public class BoardEnity  extends BaseEntity {
+public class BoardEntity  extends BaseEntity {
 
 	@Id //PK 컬럼지정, 필수
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
@@ -36,5 +38,15 @@ public class BoardEnity  extends BaseEntity {
 	
 	@Column
 	private int boardHits;
+	
+	public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
+		BoardEntity boardEntity = new BoardEntity();
+		boardEntity.setBoardWriter(boardDTO.getBoardWriter() );
+		boardEntity.setBoardPass(boardDTO.getBoardPass());
+		boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+		boardEntity.setBoardContents(boardDTO.getBoardContents());
+		boardEntity.setBoardHits(0);
+		return boardEntity;
+	}
 	
 }
